@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <title>Water-bill</title>
+</head>
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/6.2.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#reserved-urls -->
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+
+    <div class="form-container">    
+        <ul id="progressbar">
+            <li class="active">פרטי החשבונית</li>
+            <li>צרכנים נוספים</li>
+            <li>התוצאה</li>
+        </ul>
+        <form>
+            <fieldset>
+                <h3 class="fs-subtitle">שלב 1</h3>
+                <h2 class="fs-title">פרטי החשבונית</h2>
+                <div class="main-consumer">
+                    <div class="input-container">
+                        <input class="family-names" type="text" data-label="name-main" placeholder="שם" value="" required>
+                        <input class="amount-of-people" type="number" data-label="people-main" placeholder="נפשות" value="" required>
+                    </div>
+                    <div class="input-container">
+                        <input class="prices" type="number" data-label="tariff-1" placeholder='מחיר למ"ק - תעריף 1' value="">
+                        <input class="prices" id="test" type="number" data-label="tariff-2" placeholder='מחיר למ"ק - תעריף 2' value="">
+                    </div>
+                    <div class="input-container">
+                        <input class="usage-amount" type="number" data-label="amount-tariff-1" placeholder="כמות מים שחויב במחיר 1" value="">
+                        <input class="usage-amount" type="number" data-label="amount-tariff-2" placeholder="כמות מים שחויב במחיר 2" value="">
+                    </div>
+                </div>
+                <button type="button" name="next" class="next action-button">הבא</button>
+            </fieldset>
+            <fieldset>
+                <h3 class="fs-subtitle">שלב 2</h3>
+                <h2 class="fs-title">פרטי הצרכנים הנוספים</h2>
+            <div class="secondary-consumers">
+                <div class="consumer">
+                    <div class="input-container">
+                        <input class="family-names" type="text" data-label="name-2" placeholder="שם" value="">
+                        <input class="amount-of-people" type="number" data-label="people-2" placeholder="נפשות" value="">
+                    </div>
+                    <div class="input-container meters">
+                        <input type="number" data-label="previous-meter-reading" placeholder="קריאת מונה קודמת" value="">
+                        <input type="number" data-label="current-meter-reading" placeholder="קריאת מונה נוכחית" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="add-remove-buttons">
+                <button type="button" class="add-button" onclick="addConsumer()">+</button>
+            </div>
+                <button type="button" name="previous" class="previous action-button">הקודם</button>
+                <button type="button" name="next" class="next action-button" onclick="testa()">הבא</button>
+            </fieldset> 
+            <fieldset>
+                <h3 class="fs-subtitle">שלב 3</h3>
+                <h2 class="fs-title">תוצאה</h2>
+                <table>
+                    <tr>
+                        <th>שם</th>
+                        <th>תעריף</th>
+                        <th>צריכה</th>
+                        <th>תשלום</th>
+                    </tr>
+                </table>
+                <button type="button" name="previous" class="previous action-button action-button">הקודם</button>
+            </fieldset>
+        </form>
+    </div>
+    <p id="copyright">2019 &copy; shayeulman@gmail.com</p>
+    
+    <script src="app.js"></script>
+
+    <script>
+        
+
+
+
+
+        function animateCSS(element, animationName, typeOfSelector, callback) {
+            const node = typeOfSelector === 'var' ? element : document.querySelector(element);
+            node.classList.add('animated', animationName)
+
+            function handleAnimationEnd() {
+                node.classList.remove('animated', animationName)
+                node.removeEventListener('animationend', handleAnimationEnd)
+
+                if (typeof callback === 'function') callback()
+            }
+
+            node.addEventListener('animationend', handleAnimationEnd)
+        }
+
+        const getNodeindex = (elm) => [...elm.parentNode.children].findIndex(c => c == elm);
+
+        // next button & previous button
+        let currentFs, nextFs, previusFs;   
+        document.querySelectorAll('.next').forEach(b => b.addEventListener('click', function(){
+
+
+            this.parentElement.style.display = "none";
+            currentFs = this.parentElement;
+            nextFs = this.parentElement.nextElementSibling;
+            document.querySelectorAll('#progressbar li')[getNodeindex(nextFs)].classList.add("active");
+
+            nextFs.style.display = "block";
+        }))
+
+        document.querySelectorAll('.previous').forEach(b => b.addEventListener('click', function(){
+            this.parentElement.style.display = "none";
+            currentFs = this.parentElement;
+            previousFs = this.parentElement.previousElementSibling;
+            document.querySelectorAll('#progressbar li')[getNodeindex(currentFs)].classList.remove("active");
+            previousFs.style.display = "block";
+        }))
+
+        
+
+    
+
+
+   
+
+    </script>
+
+</body>
+</html>
