@@ -30,16 +30,16 @@
                 <h2 class="fs-title">פרטי החשבונית</h2>
                 <div class="main-consumer">
                     <div class="input-container">
-                        <input class="family-names" type="text" data-label="name-main" placeholder="שם" value="" required>
-                        <input class="amount-of-people" type="number" data-label="people-main" placeholder="נפשות" value="" required>
+                        <input class="family-names" type="text" data-label="name-main" placeholder="שם" value="א" required>
+                        <input class="amount-of-people" type="number" data-label="people-main" placeholder="נפשות" value="3" required>
                     </div>
                     <div class="input-container">
-                        <input class="prices" type="number" data-label="tariff-1" placeholder='מחיר למ"ק - תעריף 1' value="">
-                        <input class="prices" id="test" type="number" data-label="tariff-2" placeholder='מחיר למ"ק - תעריף 2' value="">
+                        <input class="prices" type="number" data-label="tariff-1" placeholder='מחיר למ"ק - תעריף 1' value="5">
+                        <input class="prices" id="test" type="number" data-label="tariff-2" placeholder='מחיר למ"ק - תעריף 2' value="10">
                     </div>
                     <div class="input-container">
-                        <input class="usage-amount" type="number" data-label="amount-tariff-1" placeholder="כמות מים שחויב במחיר 1" value="">
-                        <input class="usage-amount" type="number" data-label="amount-tariff-2" placeholder="כמות מים שחויב במחיר 2" value="">
+                        <input class="usage-amount" type="number" data-label="amount-tariff-1" placeholder="כמות מים שחויב במחיר 1" value="30">
+                        <input class="usage-amount" type="number" data-label="amount-tariff-2" placeholder="כמות מים שחויב במחיר 2" value="10">
                     </div>
                 </div>
                 <button type="button" name="next" class="next action-button">הבא</button>
@@ -50,12 +50,12 @@
             <div class="secondary-consumers">
                 <div class="consumer">
                     <div class="input-container">
-                        <input class="family-names" type="text" data-label="name-2" placeholder="שם" value="">
-                        <input class="amount-of-people" type="number" data-label="people-2" placeholder="נפשות" value="">
+                        <input class="family-names" type="text" data-label="name-2" placeholder="שם" value="ב">
+                        <input class="amount-of-people" type="number" data-label="people-2" placeholder="נפשות" value="5">
                     </div>
                     <div class="input-container meters">
-                        <input type="number" data-label="previous-meter-reading" placeholder="קריאת מונה קודמת" value="">
-                        <input type="number" data-label="current-meter-reading" placeholder="קריאת מונה נוכחית" value="">
+                        <input type="number" data-label="previous-meter-reading" placeholder="קריאת מונה קודמת" value="1">
+                        <input type="number" data-label="current-meter-reading" placeholder="קריאת מונה נוכחית" value="11">
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <button type="button" class="add-button" onclick="addConsumer()">+</button>
             </div>
                 <button type="button" name="previous" class="previous action-button">הקודם</button>
-                <button type="button" name="next" class="next action-button" onclick="testa()">הבא</button>
+                <button type="button" name="next" class="next action-button" onclick="calculate()">הבא</button>
             </fieldset> 
             <fieldset>
                 <h3 class="fs-subtitle">שלב 3</h3>
@@ -85,11 +85,6 @@
     <script src="app.js"></script>
 
     <script>
-        
-
-
-
-
         function animateCSS(element, animationName, typeOfSelector, callback) {
             const node = typeOfSelector === 'var' ? element : document.querySelector(element);
             node.classList.add('animated', animationName)
@@ -126,13 +121,6 @@
             document.querySelectorAll('#progressbar li')[getNodeindex(currentFs)].classList.remove("active");
             previousFs.style.display = "block";
         }))
-
-        
-
-    
-
-
-   
 
     </script>
 

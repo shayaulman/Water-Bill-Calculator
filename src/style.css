@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
 
-body, html {
+html {
     margin: 0;
     height: 100%;
   }
@@ -13,10 +13,11 @@ body, html {
   }
   
   body {
+      margin: 0;
     /* The image used */
     background-image: url('img/samuel-scrimshaw-ebbFZvavGy4-unsplash.jpg');
     /* Control the height of the image */
-    min-height: 380px;
+min-height: 500px;
   
     /* Center and scale the image nicely */
     background-position: center;
@@ -166,7 +167,7 @@ ul{
 
 #copyright {
     position: absolute;
-    bottom: 15px;
+    bottom: -15%;
     width: 100%;
     padding: 18px;
     font-size: 12px;
