@@ -36,6 +36,8 @@ function Calculation () {
     
     this.result = () => {
         const allowedAmountForPerson = this.info().billUsage[0] / this.info().amountOfPeople.reduce((a,v) => a+v, 0);
+
+        // TODO: handle use-case when 1 or more tenants have used *less* then allowed.
         const allowedForEachTenant = this.info().amountOfPeople.map(t => t * allowedAmountForPerson);
         
 
@@ -57,6 +59,8 @@ function calculate() {
     const calculation = new Calculation();
     let table = document.querySelector('table');
     html = '';
+    console.log(calculation.info())
+    console.log(calculation.result())
     calculation.info().names.forEach((n, i) => html += `
         <tr>
             <td rowspan="2">${n}</td>

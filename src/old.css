@@ -1,138 +1,52 @@
 @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
 
+html {
+    margin: 0;
+    height: 100%;
+  }
+  
 
-* {
+  * {
     direction: rtl;
     font-family: 'Varela Round', serif;
     box-sizing: border-box;
-    margin: 0;
-}
-
-
-.cn {
-    display: table-cell;
-    width: 500px;
-    height: 500px;
-    vertical-align: middle;
-    text-align: center;
   }
   
-  .inner {
-    display: inline-block;
-    width: 200px; height: 200px;
-  }
-
-img {
-    z-index: -1;
-    min-height: 100%;
-    min-width: 1024px;
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-img {
-      left: 50%;
-      margin-left: -512px;   /* 50% */
-    }
-  }
-body {
-    margin: 0;
+  body {
+      margin: 0;
     /* The image used */
-    /* background-image: url('img/samuel-scrimshaw-ebbFZvavGy4-unsplash.jpg'); */
+    background-image: url('img/samuel-scrimshaw-ebbFZvavGy4-unsplash.jpg');
     /* Control the height of the image */
-    min-height: 500px;
+min-height: 500px;
+  
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover !important;
-    
-    background-size: 100%;
+    background-size: cover;
+    position: relative;
+  }
+
+  form {
+    position: relative;
+   
 }
 
 .form-container {
-	margin: 90px auto;
+    /* width: 40%; */
+	margin: 8% auto;
 	text-align: center;
 }
 
-
-form {
-    width: 400px;
-    margin: 50px auto;
-    text-align: center;
-    position: relative;
-}
-
-fieldset {
-    min-width: 240px;
-    max-width: 350px;
-    background: white;
-	border: 0 none;
-	border-radius: 4px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	box-sizing: border-box;
-	margin:auto;
-    margin-top: 2vw;
-    border: none;
-    height: 320px;
-    overflow: scroll;
-}
-
-
-
-form fieldset {
-    background: white;
-    border: 0 none;
-    border-radius: 3px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 10px 20px;
-    box-sizing: border-box;
-    width: 80%;
-    margin: 0 10%;
-    
-    /*stacking fieldsets above each other*/
-    position: relative;
-}
-/*Hide all except first fieldset*/
-form fieldset:not(:first-of-type) {
-    display: none;
-}
-/*inputs*/
-form input, form textarea {
-    padding: 10px;
+input {
+    padding: 8px;
+    margin: auto;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 1px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-family: montserrat;
     color: #2C3E50;
-    font-size: 13px;
-}
-/*buttons*/
-form .action-button {
-    /* position: absolute; */
-    /* left: 50%; */
-    /* bottom: 10px; */
-	width: 80px;
-	background: #072c70;
-	font-weight: bold;
-	color: white;
-	border: 0 none;
-	border-radius: 1px;
-	cursor: pointer;
-	padding: 10px 10px;
-    margin-top: 20%;
-    border-radius: 3px;
-}
-
-
-#result {
-    min-width: 320px;
-    max-width: 450px;
+    font-size: 8px;
 }
 
 input:focus {
@@ -159,7 +73,7 @@ input:focus {
 }
 
 .fs-title {
-    margin: 5%;
+    margin: 0;
     text-align: center;
 	font-size: 16px;
 	color: #2C3E50;
@@ -168,8 +82,29 @@ input:focus {
 .fs-subtitle {
     text-align: center;
 	font-size: 10px;
-	color:#f0f2f5;
+	color:#072c70;
 	margin-bottom: 10px;
+}
+
+fieldset:not(:first-of-type) {
+	display: none;
+}
+
+fieldset {
+    /* position:absolute; */
+    min-width: 240px;
+    max-width: 350px;
+    background: white;
+	border: 0 none;
+	border-radius: 4px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	box-sizing: border-box;
+	margin:auto;
+    margin-top: 2vw;
+    border: none;
+    padding: 12px;
+    height: 320px;
+    overflow: scroll;
 }
 
 
@@ -232,7 +167,7 @@ ul{
 
 #copyright {
     position: absolute;
-    bottom: 15px;
+    bottom: -15%;
     width: 100%;
     padding: 18px;
     font-size: 12px;
@@ -241,6 +176,27 @@ ul{
     background: rgba(134, 196, 224, 0.3);
 }
 
+
+form .action-button {
+    /* position: absolute; */
+    /* left: 50%; */
+    /* bottom: 10px; */
+	width: 80px;
+	background: #072c70;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 10px;
+    margin-top: 20%;
+}
+
+
+/* .btn-container {
+    display: flex;
+    position: relative;
+} */
 
 form .action-button:hover, form.action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #072c70;
@@ -251,7 +207,6 @@ table {
 }
 
 table, th, td {
-    padding: 10px;
     border-collapse: collapse;
     border: 1px solid #ccc;
     border-radius: 1px;
