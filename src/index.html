@@ -30,36 +30,40 @@
         <form >
             <fieldset>
                 <h2 class="fs-title">פרטי החשבונית</h2>
-                <div class="main-consumer">
-                    <div class="input-container">
-                        <input class="family-names" type="text" data-label="name-main" placeholder="שם" value="א" required>
-                        <input class="amount-of-people" type="number" data-label="people-main" placeholder="נפשות" value="3" required>
+                <div class="fields-container">
+                    <div class="main-consumer">
+                        <div class="input-container">
+                            <input class="family-names" type="text" data-label="name-main" placeholder="שם" value="א" required>
+                            <input class="amount-of-people" type="number" data-label="people-main" placeholder="נפשות" value="3" required>
+                        </div>
+                        <div class="input-container">
+                            <input class="prices" type="number" data-label="tariff-1" placeholder='מחיר למ"ק - תעריף 1' value="5">
+                            <input class="prices" id="test" type="number" data-label="tariff-2" placeholder='מחיר למ"ק - תעריף 2' value="10">
+                        </div>
+                        <div class="input-container">
+                            <input class="usage-amount" type="number" data-label="amount-tariff-1" placeholder="כמות מים שחויב במחיר 1" value="30">
+                            <input class="usage-amount" type="number" data-label="amount-tariff-2" placeholder="כמות מים שחויב במחיר 2" value="10">
+                        </div>
                     </div>
-                    <div class="input-container">
-                        <input class="prices" type="number" data-label="tariff-1" placeholder='מחיר למ"ק - תעריף 1' value="5">
-                        <input class="prices" id="test" type="number" data-label="tariff-2" placeholder='מחיר למ"ק - תעריף 2' value="10">
-                    </div>
-                    <div class="input-container">
-                        <input class="usage-amount" type="number" data-label="amount-tariff-1" placeholder="כמות מים שחויב במחיר 1" value="30">
-                        <input class="usage-amount" type="number" data-label="amount-tariff-2" placeholder="כמות מים שחויב במחיר 2" value="10">
-                    </div>
-                </div>
+                 </div>
                 <button type="button" name="next" class="next action-button">הבא</button>
             </fieldset>
             <fieldset>
                 <h2 class="fs-title">פרטי הצרכנים הנוספים</h2>
-            <div class="secondary-consumers">
-                <div class="consumer">
-                    <div class="input-container">
-                        <input class="family-names" type="text" data-label="name-2" placeholder="שם" value="ב">
-                        <input class="amount-of-people" type="number" data-label="people-2" placeholder="נפשות" value="5">
-                    </div>
-                    <div class="input-container meters">
-                        <input type="number" data-label="previous-meter-reading" placeholder="קריאת מונה קודמת" value="1">
-                        <input type="number" data-label="current-meter-reading" placeholder="קריאת מונה נוכחית" value="11">
+                <div class="fields-container">
+                    <div class="secondary-consumers">
+                        <div class="consumer">
+                            <div class="input-container">
+                                <input class="family-names" type="text" data-label="name-2" placeholder="שם" value="ב">
+                                <input class="amount-of-people" type="number" data-label="people-2" placeholder="נפשות" value="5">
+                            </div>
+                            <div class="input-container meters">
+                                <input type="number" data-label="previous-meter-reading" placeholder="קריאת מונה קודמת" value="1">
+                                <input type="number" data-label="current-meter-reading" placeholder="קריאת מונה נוכחית" value="11">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             <div class="add-remove-buttons">
                 <button type="button" class="add-button" onclick="addConsumer()">+</button>
             </div>
@@ -68,14 +72,16 @@
             </fieldset> 
             <fieldset id="result">
                 <h2 class="fs-title">תוצאה</h2>
-                <table>
-                    <tr>
-                        <th>שם</th>
-                        <th>תעריף</th>
-                        <th>צריכה</th>
-                        <th>תשלום</th>
-                    </tr>
-                </table>
+                <div class="fields-container">
+                    <table>
+                        <tr>
+                            <th>שם</th>
+                            <th>תעריף</th>
+                            <th>צריכה</th>
+                            <th>תשלום</th>
+                        </tr>
+                    </table>
+                </div>
                 <button type="button" name="previous" class="previous action-button action-button">הקודם</button>
             </fieldset>
         </form>

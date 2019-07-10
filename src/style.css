@@ -8,20 +8,7 @@
     margin: 0;
 }
 
-
-.cn {
-    display: table-cell;
-    width: 500px;
-    height: 500px;
-    vertical-align: middle;
-    text-align: center;
-  }
-  
-  .inner {
-    display: inline-block;
-    width: 200px; height: 200px;
-  }
-
+/* Background */
 img {
     z-index: -1;
     min-height: 100%;
@@ -30,7 +17,7 @@ img {
     height: auto;
     position: fixed;
     top: 0;
-    left: 0;
+    /* left: 0; */
   }
   
 @media screen and (max-width: 1024px) { /* Specific to this particular image */
@@ -38,26 +25,18 @@ img {
       left: 50%;
       margin-left: -512px;   /* 50% */
     }
-  }
+}
+
 body {
     margin: 0;
-    /* The image used */
-    /* background-image: url('img/samuel-scrimshaw-ebbFZvavGy4-unsplash.jpg'); */
-    /* Control the height of the image */
-    min-height: 500px;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover !important;
-    
-    background-size: 100%;
 }
+
+/* form */
 
 .form-container {
 	margin: 90px auto;
 	text-align: center;
 }
-
 
 form {
     width: 400px;
@@ -67,56 +46,36 @@ form {
 }
 
 fieldset {
-    min-width: 240px;
-    max-width: 350px;
+    position: relative;
+    margin: 0 10%;
+    padding: 0;
+    width: 80%;
     background: white;
 	border: 0 none;
-	border-radius: 4px;
+	border-radius: 6px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 	box-sizing: border-box;
-	margin:auto;
-    margin-top: 2vw;
-    border: none;
     height: 320px;
     overflow: scroll;
 }
 
-
-
-form fieldset {
-    background: white;
-    border: 0 none;
-    border-radius: 3px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 10px 20px;
-    box-sizing: border-box;
-    width: 80%;
-    margin: 0 10%;
-    
-    /*stacking fieldsets above each other*/
-    position: relative;
-}
 /*Hide all except first fieldset*/
 form fieldset:not(:first-of-type) {
     display: none;
 }
 /*inputs*/
-form input, form textarea {
-    padding: 10px;
+form input {
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-family: montserrat;
     color: #2C3E50;
-    font-size: 13px;
+    font-size: 12px;
 }
 /*buttons*/
 form .action-button {
-    /* position: absolute; */
-    /* left: 50%; */
-    /* bottom: 10px; */
 	width: 80px;
 	background: #072c70;
 	font-weight: bold;
@@ -129,16 +88,22 @@ form .action-button {
     border-radius: 3px;
 }
 
+form .action-button:hover, form.action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #072c70;
+    transition: 0.2s;
+}
 
-#result {
-    min-width: 320px;
-    max-width: 450px;
+.fields-container {
+    padding: 10px 20px;
+}
+
+.action-button:focus {
+    outline: none;
 }
 
 input:focus {
     outline:1px solid #072c70;
 }
-
 
 .input-container {
     display: flex;
@@ -159,21 +124,15 @@ input:focus {
 }
 
 .fs-title {
-    margin: 5%;
+    padding: 8px;
     text-align: center;
 	font-size: 16px;
-	color: #2C3E50;
-	margin-bottom: 10px;
-}
-.fs-subtitle {
-    text-align: center;
-	font-size: 10px;
-	color:#f0f2f5;
-	margin-bottom: 10px;
+	color: #eee;
+    margin-bottom: 10px;
+    background-color:rgb(7, 44, 112);
 }
 
-
-ul{
+ul {
     padding: 0;
 }
 
@@ -223,8 +182,7 @@ ul{
 	/*connector not needed before the first step*/
 	content: none; 
 }
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
+
 #progressbar li.active:before,  #progressbar li.active:after{
 	background: #072c70;
     color: white;
@@ -239,11 +197,6 @@ ul{
     color: #2C3E50;
     text-align: center;
     background: rgba(134, 196, 224, 0.3);
-}
-
-
-form .action-button:hover, form.action-button:focus {
-	box-shadow: 0 0 0 2px white, 0 0 0 3px #072c70;
 }
 
 table {
