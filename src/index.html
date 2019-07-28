@@ -19,8 +19,28 @@
 
     <!-- Initialize Firebase -->
     <script src="/__/firebase/init.js"></script>
-
+    
     <img src="img/samuel-scrimshaw-ebbFZvavGy4-unsplash.jpg" id="bg" alt="">
+    <div class="sidebar">
+        <h1>מחשבון המים</h1>
+        <h4> מחלק את חשבונית המים בין הדיירים בקלות ובחלוקה מדוייקת</h4>
+        <div class="line-separator"></div>
+        <nav>
+            <div class="sidebar-nav">
+                <div class="nav-item">הסבר</div>
+                <div class="nav-item">שמור</div>
+                <div class="nav-item">הגדרות</div>
+            </div>
+            <div class="nav-window">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse temporibus ipsa dem dolor sit amet consectetur adipisicing elit. Esse temporibus ipsa deserunt, veritatis ducimus magnam? Sunt consequatur voluptate minus. Dolores, iste quas mollitia sequi illum deserunt ipsum culpa repellat est!
+               Lorem ipsum dolordolor sit amet consectetur adipisicing elit. Esse temporibus ipsa dem dolor sit amet consectetur adipisicing elit. Esse temporibus ipsa deserunt, veritatis ducimus magnam? Sunt consequatur voluptate minus. Dolores, iste quas mollitia sequi illum deserunt ipsum culpa repellat est!
+               sit amet consectet 
+               Lorem ipsum dolor sit am
+               ur adipisicing elit. Esse temporibus ipsa dem dolor sit amet consectetur adipisicing elit. Esse temporibus ipsa deserunt, veritatis ducimus magnam? Sunt consequatur voluptate minus. Dolores, iste quas mollitia sequi illum deserunt ipsum culpa repellat est!
+            </div>
+        </nav>
+
+    </div>
     <div class="form-container">    
         <ul id="progressbar">
             <li class="active">פרטי החשבונית</li>
@@ -46,7 +66,7 @@
                         </div>
                     </div>
                  </div>
-                <button type="button" name="next" class="next action-button">הבא</button>
+                <button type="button" name="next" class="next action-button first-next">הבא</button>
             </fieldset>
             <fieldset>
                 <h2 class="fs-title">פרטי הצרכנים הנוספים</h2>
@@ -65,7 +85,7 @@
                     </div>
                 </div>
             <div class="add-remove-buttons">
-                <button type="button" class="add-button" onclick="addConsumer()">+</button>
+                <button type="button" class="add-button" onclick="addConsumer()">&plus;</button>
             </div>
                 <button type="button" name="previous" class="previous action-button">הקודם</button>
                 <button type="button" name="next" class="next action-button" onclick="calculate()">הבא</button>
@@ -86,24 +106,60 @@
             </fieldset>
         </form>
     </div>
-    <p id="copyright">2019 &copy; shayeulman@gmail.com</p>
+    <a id="copyright" href="mailto:shayaulman@gmail.com">shayaulman@gmail.com 2019 &copy;</a>
+    <!-- <div class="sidebar" id="sidebar"><div class="empty-list">Results</div></div> -->
+
     
     <script src="app.js"></script>
 
     <script>
-    
-        // source: https://codepen.io/Creative_Srijon/pen/EKwRgO
+
+        // # step-validation + animation  # //
+
+
 
         let currentFs, nextFs, previousFs; //fieldsets
-        let left, opacity, scale; //fieldset properties which we will animate
+        let left, opacity, scale; //fieldset properties to animate
         let animating; //flag to prevent quick multi-click glitches
 
-        $(".next").click(function(){
+        $("input").on("keyup", function (event) {
+            currentFs = $(this).closest('fieldset');
+         
+
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                console.log(currentFs);
+                currentFs.find('.next').click();
+            }
+        });
+        // var priority =  -(Math.floor(Date.now()/1000)) + -count;
+        $(".next").click(function() {
+            // step-validation 
+
+            currentFs = $(this).parent();
+            nextFs = $(this).parent().next();
+
+            currentFs.find("input").filter(function() {
+                $(this).val() === "" ? $(this).css("border", "1px solid red") : $(this).css("border-color", "#ccc"); 
+            });
+            
+
+            let validateStep;   
+            currentFs.find("input").each(function(){
+                if ($(this).val() === "") {
+                    validateStep = false;
+                    currentFs.addClass('animated shake');
+                    setTimeout(() => currentFs.removeClass('shake'), 800);
+                    return false;
+                }
+                validateStep = true;
+            });
+                     
+            if (!validateStep) return;
+            
             if(animating) return false;
             animating = true;
             
-            currentFs = $(this).parent();
-            nextFs = $(this).parent().next();
             
             //activate next step on progressbar using the index of nextFs
             $("#progressbar li").eq($("fieldset").index(nextFs)).addClass("active");

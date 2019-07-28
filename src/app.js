@@ -52,6 +52,10 @@ function Calculation () {
             totalToPay
         })
     }
+
+    // this.validate = (checkValidation) => {
+
+    // }
 }
 
 
@@ -76,6 +80,15 @@ function calculate() {
 
     table.innerHTML += html;
 }
+
+const validateSteps = (button) => {
+    // const buttonParentElement = document.querySelector(button).parentElement;
+    // const onvalidInputs = buttonParentElement
+    console.log('fdhs')
+}
+
+
+
 
 
 const addConsumer = () => {
