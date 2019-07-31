@@ -53,19 +53,32 @@ function Calculation () {
         })
     }
 
-    // this.validate = (checkValidation) => {
+    this.validate = () => this.info().usage[0] >= 0;
 
-    // }
 }
 
 
 function calculate() {
     const calculation = new Calculation();
+    
+    if (!calculation.validate()) {
+        alert('סך השימוש ע"י הדיירים יותר מהחשבונית');
+        return false;
+    }
     let table = document.querySelector('table');
-    html = '';
+    html = `
+    <tr>
+        <th>שם</th>
+        <th>תעריף</th>
+        <th>צריכה</th>
+        <th>תשלום</th>
+    </tr>
+    `;
     console.log(calculation.info())
     console.log(calculation.result())
+   
     calculation.info().names.forEach((n, i) => html += `
+
         <tr>
             <td rowspan="2">${n}</td>
             <td>תעריף 1</td>
@@ -81,30 +94,29 @@ function calculate() {
     table.innerHTML += html;
 }
 
-const validateSteps = (button) => {
-    // const buttonParentElement = document.querySelector(button).parentElement;
-    // const onvalidInputs = buttonParentElement
-    console.log('fdhs')
-}
-
 
 
 
 
 const addConsumer = () => {
-    document.querySelectorAll('.add-button, .remove-button').forEach(btn => btn.remove())
-    document.querySelector('.secondary-consumers').innerHTML += `
+    document.querySelectorAll('.add-button, .remove-button').forEach(btn => btn.remove());
+
+    let consumerHTML = `
         <div class="consumer">
-            <div class="input-container">
-                <input class="family-names" type="text"  placeholder="שם" value="">
-                <input class="amount-of-people" type="number"  placeholder="נפשות" value="">
-            </div>
-            <div class="input-container meters">
-                <input type="number"  placeholder="קריאת מונה קודמת" value="">
-                <input type="number"  placeholder="קריאת מונה נוכחית" value="">
-            </div>
-        </div>    
-    `
+                <div class="input-container">
+                    <input class="family-names" type="text"  placeholder="שם" value="">
+                    <input class="amount-of-people" type="number"  placeholder="נפשות" value="">
+                </div>
+                <div class="input-container meters">
+                    <input type="number"  placeholder="קריאת מונה קודמת" value="">
+                    <input type="number"  placeholder="קריאת מונה נוכחית" value="">
+                </div>
+            </div>  
+        `
+    console.log(consumerHTML)
+    document.querySelector('.secondary-consumers').innerHTML += consumerHTML;
+          
+    
     document.querySelector('.add-remove-buttons').innerHTML += `
         <button type="button" class="add-button" onclick="addConsumer()">+</button>
         <button type="button" class="remove-button" onclick="removeConsumer()">-</button>

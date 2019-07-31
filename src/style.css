@@ -15,7 +15,7 @@ img {
   height: auto;
   position: fixed;
   top: 0;
-  /* left: 0; */
+  left: 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -46,7 +46,7 @@ form {
 
 fieldset {
   position: relative;
-  margin: 0 10%;
+  margin: 0 10% !important;
   padding: 0;
   width: 80%;
   background: #e9eae8;
@@ -227,7 +227,7 @@ table, th, td {
   border: 1px solid #ccc;
   border-radius: 1px;
   color: #2C3E50;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .line-separator {
@@ -287,6 +287,10 @@ table, th, td {
   color: grey;
   padding: 20px;
   background-color: #ccc;
+}
+
+.tooltip-inner {
+  font-size: 8px;
 }
 
 /*# sourceMappingURL=style.css.map */
