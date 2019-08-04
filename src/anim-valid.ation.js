@@ -150,3 +150,6 @@ const addAnimation = (element, className, ms) => {
     element.addClass(className);
     setTimeout(() => element.removeClass(className), ms)
 }
+
+
+    

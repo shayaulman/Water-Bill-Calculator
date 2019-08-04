@@ -33,19 +33,43 @@ function Calculation () {
             meters
         });
     }
+    this.someUsedLessThanAllowed = (used, allowed) => used.some((u, i) => u < allowed[i]);
+
+    this.spreadRest = (used, allowed, people) => {
+        const usedLess = used.map((u,i) => u < allowed[i] ? u : undefined);  //  hold track of trh indeexes indicies
+        const leftOvers = usedLess.map((u,i) => u !== undefined ? allowed[i] - u : undefined)
+                                  .filter(e => e)
+                                  .reduce((a,v) => a+v, 0);
     
+        const amountOfPeopleUsedMore = usedLess.map((u, i) => u !== undefined ? undefined : people[i])
+                                               .filter(e => e)  // filter out undefined values
+                                               .reduce((a,v) => a+v, 0);
+    
+        const addToEveryOne = leftOvers / amountOfPeopleUsedMore;
+        const newAllowed = used.map((u, i) => {
+            return usedLess[i] === undefined ? allowed[i] + (addToEveryOne * people[i]) : used[i]
+        });
+    
+        return newAllowed;
+    }
+
     this.result = () => {
         const allowedAmountForPerson = this.info().billUsage[0] / this.info().amountOfPeople.reduce((a,v) => a+v, 0);
-
-        // TODO: handle use-case when 1 or more tenants have used *less* then allowed.
-        const allowedForEachTenant = this.info().amountOfPeople.map(t => t * allowedAmountForPerson);
         
+        // TODO: handle use-case when 1 or more tenants have used *less* then allowed.
+        let allowedForEachTenant = this.info().amountOfPeople.map(t => t * allowedAmountForPerson);
+        
+        while (this.someUsedLessThanAllowed(this.info().usage, allowedForEachTenant)) {
+            console.log('recalculated');
+            allowedForEachTenant = this.spreadRest(this.info().usage, allowedForEachTenant, this.info().amountOfPeople);
+        }
 
         const tariff1ToPay = allowedForEachTenant.map(a => a * this.info().tariffs[0]);
         const tariff2ToPay = this.info().usage.map((p, i) => (p - allowedForEachTenant[i]) * this.info().tariffs[1])
         const totalToPay = tariff1ToPay.map((t, i) => t+ tariff2ToPay[i]);
 
         return ({
+            allowedAmountForPerson,
             allowedForEachTenant,
             tariff1ToPay,
             tariff2ToPay,
@@ -54,6 +78,9 @@ function Calculation () {
     }
 
     this.validate = () => this.info().usage[0] >= 0;
+
+    
+    
 
 }
 
@@ -75,7 +102,7 @@ function calculate() {
     </tr>
     `;
     console.log(calculation.info())
-    console.log(calculation.result())
+    // console.log(calculation.result())
    
     calculation.info().names.forEach((n, i) => html += `
 
@@ -113,10 +140,9 @@ const addConsumer = () => {
                 </div>
             </div>  
         `
-    console.log(consumerHTML)
+
     document.querySelector('.secondary-consumers').innerHTML += consumerHTML;
           
-    
     document.querySelector('.add-remove-buttons').innerHTML += `
         <button type="button" class="add-button" onclick="addConsumer()">+</button>
         <button type="button" class="remove-button" onclick="removeConsumer()">-</button>
