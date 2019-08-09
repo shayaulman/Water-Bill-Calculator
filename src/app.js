@@ -36,7 +36,10 @@ function Calculation () {
     this.someUsedLessThanAllowed = (used, allowed) => used.some((u, i) => u < allowed[i]);
 
     this.spreadRest = (used, allowed, people) => {
-        const usedLess = used.map((u,i) => u < allowed[i] ? u : undefined);  //  hold track of trh indeexes indicies
+        const usedLess = used.map((u,i) => u <= allowed[i] ? u : undefined);  //  hold track of trh indeexes indicies
+        console.log('used: ',used)
+        console.log('usedLess: ',usedLess)
+        console.log('allowed: ', allowed)
         const leftOvers = usedLess.map((u,i) => u !== undefined ? allowed[i] - u : undefined)
                                   .filter(e => e)
                                   .reduce((a,v) => a+v, 0);
@@ -49,7 +52,7 @@ function Calculation () {
         const newAllowed = used.map((u, i) => {
             return usedLess[i] === undefined ? allowed[i] + (addToEveryOne * people[i]) : used[i]
         });
-    
+        console.log(newAllowed)
         return newAllowed;
     }
 
@@ -58,10 +61,15 @@ function Calculation () {
         
         // TODO: handle use-case when 1 or more tenants have used *less* then allowed.
         let allowedForEachTenant = this.info().amountOfPeople.map(t => t * allowedAmountForPerson);
-        
+        console.log(allowedForEachTenant)
+        let counter = 0
         while (this.someUsedLessThanAllowed(this.info().usage, allowedForEachTenant)) {
-            console.log('recalculated');
+            console.log('before: ', allowedForEachTenant);
+            counter++
+            console.log(counter)
+            if (counter > 15) debugger;
             allowedForEachTenant = this.spreadRest(this.info().usage, allowedForEachTenant, this.info().amountOfPeople);
+            console.log('after: ',allowedForEachTenant)
         }
 
         const tariff1ToPay = allowedForEachTenant.map(a => a * this.info().tariffs[0]);
@@ -101,7 +109,7 @@ function calculate() {
         <th>תשלום</th>
     </tr>
     `;
-    console.log(calculation.info())
+    // console.log(calculation.info())
     // console.log(calculation.result())
    
     calculation.info().names.forEach((n, i) => html += `

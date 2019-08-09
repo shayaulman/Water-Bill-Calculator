@@ -8,10 +8,8 @@
 
 /* Background */
 img {
-  opacity: 0.5;
   z-index: -1;
   min-height: 100%;
-  min-width: 1024px;
   width: 100%;
   height: auto;
   position: fixed;
@@ -291,7 +289,7 @@ table, th, td {
 }
 
 .tooltip-inner {
-  font-size: 8px;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=style.css.map */
